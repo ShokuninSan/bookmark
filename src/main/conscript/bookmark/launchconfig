@@ -6,5 +6,5 @@
 [scala]
   version: 2.11.1
 [repositories]
-  local
   sonatype-releases: https://oss.sonatype.org/content/repositories/releases/
+  local
