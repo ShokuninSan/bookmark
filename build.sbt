@@ -8,4 +8,4 @@ version := "0.1.0"
 
 scalaVersion := "2.10.4"
 
-libraryDependencies += "org.scala-lang" %% "scala-pickling" % "0.8.0"
+libraryDependencies += "org.mongodb" %% "casbah" % "2.6.4"
