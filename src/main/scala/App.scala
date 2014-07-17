@@ -1,6 +1,5 @@
 package io.flatmap
 
-import io.flatmap.components.{ServiceComponentImpl, MongoDaoComponentImpl}
 import io.flatmap.models.Bookmark
 
 /** The launched conscript entry point */
@@ -8,18 +7,6 @@ class App extends xsbti.AppMain {
   def run(config: xsbti.AppConfiguration) = {
     Exit(App.run(config.arguments))
   }
-}
-
-object BookmarkComponentRegistry extends ServiceComponentImpl with MongoDaoComponentImpl {
-
-  val mongoServer = "flatmap.io"
-  val mongoPort = 27017
-  val mongoDb = "bookmark"
-  val mongoCollection = "shokunin"
-
-  val service = new ServiceImpl
-  val dao = new MongoDaoImpl
-
 }
 
 object App {
