@@ -6,6 +6,7 @@ import com.novus.salat._
 import com.novus.salat.global._
 import com.mongodb.casbah.commons.MongoDBObject
 import com.mongodb.casbah.Imports._
+import com.mongodb.casbah.commons.conversions.scala.RegisterJodaTimeConversionHelpers
 
 trait DaoComponent {
 
@@ -35,12 +36,14 @@ trait MongoDaoComponentImpl extends DaoComponent {
 
   class MongoDaoImpl extends Dao {
 
+    RegisterJodaTimeConversionHelpers()
+
     val collection = MongoFactory.collection
 
     def write(bookmark: Bookmark): Unit = collection.save(grater[Bookmark].asDBObject(bookmark))
 
     def find(query: String): Stream[Bookmark] =
-      collection.find(MongoDBObject("comment" -> query.r)) map { grater[Bookmark].asObject(_) } toStream
+      collection.find(MongoDBObject("description" -> query.r)) map { grater[Bookmark].asObject(_) } toStream
 
   }
 

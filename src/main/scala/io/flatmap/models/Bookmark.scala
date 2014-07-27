@@ -1,3 +1,5 @@
 package io.flatmap.models
 
-case class Bookmark(url: String, comment: String)
+import org.joda.time.DateTime
+
+case class Bookmark(url: String, description: String, addDate: DateTime, lastModified: DateTime)

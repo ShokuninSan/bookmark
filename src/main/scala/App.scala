@@ -1,6 +1,7 @@
 package io.flatmap
 
 import io.flatmap.models.Bookmark
+import org.joda.time.DateTime
 
 /** The launched conscript entry point */
 class App extends xsbti.AppMain {
@@ -12,13 +13,8 @@ class App extends xsbti.AppMain {
 object App {
   /** Shared by the launched version and the runnable version,
    * returns the process status code */
-  def run(args: Array[String]): Int = {
-    if ("find".equals(args(0)))
-      BookmarkComponentRegistry.service.find(args(1)).foreach { bookmark =>
-        println(s"${Console.BLUE}${Console.YELLOW_B}${Console.UNDERLINED}${bookmark.url}${Console.RESET} ${bookmark.comment}")
-      }
-    else
-      BookmarkComponentRegistry.service.write(Bookmark(args(0), args(1)))
+  def run(args: Seq[String]): Int = {
+    BookmarkComponentsRegistry.consoleHelper.dispatch(args)
     0
   }
   /** Standard runnable class entrypoint */

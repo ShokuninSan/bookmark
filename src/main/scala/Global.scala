@@ -1,8 +1,8 @@
 package io.flatmap
 
-import io.flatmap.components.{MongoDaoComponentImpl, ServiceComponentImpl}
+import io.flatmap.components.{ConsoleHelperComponentImpl, MongoDaoComponentImpl, ServiceComponentImpl}
 
-object BookmarkComponentRegistry extends ConfigComponent with ServiceComponentImpl with MongoDaoComponentImpl {
+object BookmarkComponentsRegistry extends ConfigComponent with ConsoleHelperComponentImpl with ServiceComponentImpl with MongoDaoComponentImpl {
 
   val mongoServer = Config.get("db.server").get
   val mongoPort = Config.get("db.port").get.toInt
@@ -11,5 +11,6 @@ object BookmarkComponentRegistry extends ConfigComponent with ServiceComponentIm
 
   val service = new ServiceImpl
   val dao = new MongoDaoImpl
+  val consoleHelper = new ConsoleHelperImpl
 
 }
