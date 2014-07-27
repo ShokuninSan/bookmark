@@ -22,8 +22,15 @@ Add a `~/.bookmarkrc`:
     db.name = <your-db-name>
     db.collection = <your-collection-name>
 
-## Develop
+## Develop/Test
 
     $ sbt
     > ~csRun bookmark https://github.com/novus/salat/wiki/Quick-start "nice salat tutorial"
     > ~csRun bookmark find ^.*awesome$
+
+## Use
+
+    $ bookmark https://twitter.com/Shokunin_San "Tweets on scala and web programming."
+    $ bookmark find scala
+    https://twitter.com/Shokunin_San Tweets on scala and web programming.
+    $ _
