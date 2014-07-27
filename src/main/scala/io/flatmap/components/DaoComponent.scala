@@ -1,9 +1,9 @@
 package io.flatmap.components
 
 import io.flatmap.models.Bookmark
-import com.mongodb.DBObject
-import com.mongodb.casbah.commons.MongoDBObject
 import com.mongodb.casbah.MongoClient
+import com.novus.salat._
+import com.novus.salat.global._
 
 trait DaoComponent {
 
@@ -31,17 +31,9 @@ trait MongoDaoComponentImpl extends DaoComponent {
 
   class MongoDaoImpl extends Dao {
 
-    def write(bookmark: Bookmark): Unit = {
-      val obj = buildMongoDbObject(bookmark)
-      MongoFactory.collection.save(obj)
-    }
+    val collection = MongoFactory.collection
 
-    private def buildMongoDbObject(bookmark: Bookmark): DBObject = {
-      val builder = MongoDBObject.newBuilder
-      builder += "url" -> bookmark.url
-      builder += "comment" -> bookmark.comment
-      builder.result
-    }
+    def write(bookmark: Bookmark): Unit = collection.save(grater[Bookmark].asDBObject(bookmark))
 
   }
 
