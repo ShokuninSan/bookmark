@@ -23,10 +23,12 @@ trait ConsoleHelperComponentImpl extends ConsoleHelperComponent {
 
     def dispatch(args: Seq[String]): Unit =
       args match {
+        case Seq("import", filename: String) =>
+          service.`import`(filename)
         case Seq("find", query: String) =>
           service.find(query).foreach { printResult }
         case Seq(url: String, description: String) =>
-          service.write(Bookmark(url, description, new DateTime, new DateTime))
+          service.write(Bookmark(url, description, Some(new DateTime), Some(new DateTime)))
         case _ =>
           println("Usage: bookmark { find <regex> | <url> <description> } ")
       }
@@ -36,7 +38,7 @@ trait ConsoleHelperComponentImpl extends ConsoleHelperComponent {
       print(s"${Console.BLUE}${Console.YELLOW_B}${Console.UNDERLINED}")
       print(s"${bookmark.url}")
       print(s"${Console.RESET}")
-      println(s" (added on ${bookmark.addDate.toDate}})")
+      println(s" (added on ${bookmark.addDate.map(_.toDate)}})")
     }
 
   }
