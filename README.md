@@ -13,7 +13,14 @@ Install bookmark (from local ivy repo).
     $ sbt
     > publishLocal
 
-    $ cs ShokuninSan/bookmark
+    $ cs ShokuninSan/bookmark --no-exec
+
+Add a `~/.bookmarkrc`:
+
+    db.server = <mongodb-server-ip-or-hostname>
+    db.port = <mongodb-port>
+    db.name = <your-db-name>
+    db.collection = <your-collection-name>
 
 ## Develop
 
