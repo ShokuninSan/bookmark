@@ -26,3 +26,4 @@ Add a `~/.bookmarkrc`:
 
     $ sbt
     > ~csRun bookmark https://github.com/novus/salat/wiki/Quick-start "nice salat tutorial"
+    > ~csRun bookmark find ^.*awesome$

@@ -8,6 +8,8 @@ trait ServiceComponent {
 
     def write(bookmark: Bookmark): Unit
 
+    def find(query: String): Stream[Bookmark]
+
   }
 
 }
@@ -22,6 +24,7 @@ trait ServiceComponentImpl extends ServiceComponent {
 
     def write(bookmark: Bookmark): Unit = dao.write(bookmark)
 
+    def find(query: String): Stream[Bookmark] = dao.find(query)
   }
 
 }

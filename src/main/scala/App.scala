@@ -13,7 +13,12 @@ object App {
   /** Shared by the launched version and the runnable version,
    * returns the process status code */
   def run(args: Array[String]): Int = {
-    BookmarkComponentRegistry.service.write(Bookmark(args(0), args(1)))
+    if ("find".equals(args(0)))
+      BookmarkComponentRegistry.service.find(args(1)).foreach { bookmark =>
+        println(s"${Console.BLUE}${Console.YELLOW_B}${Console.UNDERLINED}${bookmark.url}${Console.RESET} ${bookmark.comment}")
+      }
+    else
+      BookmarkComponentRegistry.service.write(Bookmark(args(0), args(1)))
     0
   }
   /** Standard runnable class entrypoint */

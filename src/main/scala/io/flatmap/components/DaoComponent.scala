@@ -4,12 +4,16 @@ import io.flatmap.models.Bookmark
 import com.mongodb.casbah.MongoClient
 import com.novus.salat._
 import com.novus.salat.global._
+import com.mongodb.casbah.commons.MongoDBObject
+import com.mongodb.casbah.Imports._
 
 trait DaoComponent {
 
   trait Dao {
 
     def write(bookmark: Bookmark): Unit
+
+    def find(query: String): Stream[Bookmark]
 
   }
 
@@ -34,6 +38,9 @@ trait MongoDaoComponentImpl extends DaoComponent {
     val collection = MongoFactory.collection
 
     def write(bookmark: Bookmark): Unit = collection.save(grater[Bookmark].asDBObject(bookmark))
+
+    def find(query: String): Stream[Bookmark] =
+      collection.find(MongoDBObject("comment" -> query.r)) map { grater[Bookmark].asObject(_) } toStream
 
   }
 
