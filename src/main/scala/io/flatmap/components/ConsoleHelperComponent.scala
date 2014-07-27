@@ -1,6 +1,5 @@
 package io.flatmap.components
 
-import io.flatmap.BookmarkComponentsRegistry
 import io.flatmap.models.Bookmark
 import org.joda.time.DateTime
 

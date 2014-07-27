@@ -1,8 +1,5 @@
 package io.flatmap
 
-import io.flatmap.models.Bookmark
-import org.joda.time.DateTime
-
 /** The launched conscript entry point */
 class App extends xsbti.AppMain {
   def run(config: xsbti.AppConfiguration) = {
